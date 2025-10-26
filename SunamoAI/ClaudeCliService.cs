@@ -1,8 +1,6 @@
-﻿// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-using Microsoft.Extensions.Logging;
-
 namespace SunamoAI;
+
+using Microsoft.Extensions.Logging;
 
 /// <summary>
 /// Generic service for calling Claude CLI (claude.cmd) with retry logic and rate limit handling
@@ -91,9 +89,9 @@ public class ClaudeCliService
                         _logger.LogWarning($"Claude CLI rate limit exceeded. Waiting 65 seconds before retry (attempt {retryCount + 1}/3)...");
 
                         // Countdown from 65 to 1
-                        for (int i = 65; i > 0; i--)
+                        for (int index = 65; index > 0; index--)
                         {
-                            Console.Write($"\rRate limit - waiting: {i}s remaining...  ");
+                            Console.Write($"\rRate limit - waiting: {index}s remaining...  ");
                             await Task.Delay(1000);
                         }
                         Console.WriteLine("\rRetrying Claude CLI request...                    ");

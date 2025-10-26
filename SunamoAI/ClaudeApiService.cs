@@ -1,8 +1,6 @@
-﻿// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-using Microsoft.Extensions.Logging;
-
 namespace SunamoAI;
+
+using Microsoft.Extensions.Logging;
 
 /// <summary>
 /// Generic service for calling Claude API (Anthropic HTTP API)
