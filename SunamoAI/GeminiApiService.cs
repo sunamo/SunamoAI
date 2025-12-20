@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;

@@ -1,4 +1,5 @@
-﻿namespace SunamoAI.Tests;
+// variables names: ok
+namespace SunamoAI.Tests;
 
 public class UnitTest1
 {
