@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;
@@ -90,9 +89,9 @@ public class ClaudeCliService
                         _logger.LogWarning($"Claude CLI rate limit exceeded. Waiting 65 seconds before retry (attempt {retryCount + 1}/3)...");
 
                         // Countdown from 65 to 1
-                        for (int index = 65; index > 0; index--)
+                        for (int secondsRemaining = 65; secondsRemaining > 0; secondsRemaining--)
                         {
-                            Console.Write($"\rRate limit - waiting: {index}s remaining...  ");
+                            Console.Write($"\rRate limit - waiting: {secondsRemaining}s remaining...  ");
                             await Task.Delay(1000);
                         }
                         Console.WriteLine("\rRetrying Claude CLI request...                    ");
