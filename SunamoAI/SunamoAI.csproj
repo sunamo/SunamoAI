@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net9.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Utils for using various AI models with various approach</Description>
-    <Version>25.12.21.4</Version>
-    <PackageReleaseNotes>feat: Upgrade to net10.0</PackageReleaseNotes>
+    <Version>25.12.31.1</Version>
+    <PackageReleaseNotes>feat: replacing variable names with self-descriptive ones</PackageReleaseNotes>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
     <PackageProjectUrl>https://sunamo.cz/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sunamo/SunamoAI.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Mscc.GenerativeAI" Version="2.2.0" />
