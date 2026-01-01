@@ -12,6 +12,13 @@ public class ClaudeApiService
     private readonly bool _enableVerboseLogging;
     private readonly bool _enableDetailedLogging;
 
+    /// <summary>
+    /// Initializes a new instance of the ClaudeApiService class
+    /// </summary>
+    /// <param name="logger">Logger instance for logging operations</param>
+    /// <param name="apiKey">Anthropic API key for authentication</param>
+    /// <param name="enableVerboseLogging">Enable verbose logging for debugging</param>
+    /// <param name="enableDetailedLogging">Enable detailed logging for API calls</param>
     public ClaudeApiService(
         ILogger logger,
         string apiKey,
@@ -75,8 +82,8 @@ public class ClaudeApiService
             }
 
             string? result = null;
-            using var doc = System.Text.Json.JsonDocument.Parse(responseBody);
-            var root = doc.RootElement;
+            using var jsonDocument = System.Text.Json.JsonDocument.Parse(responseBody);
+            var root = jsonDocument.RootElement;
             if (root.TryGetProperty("content", out var contentArray) && contentArray.GetArrayLength() > 0)
             {
                 var firstContent = contentArray[0];
@@ -99,9 +106,9 @@ public class ClaudeApiService
 
             return result;
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            _logger.LogError($"Error calling Claude API: {ex.Message}");
+            _logger.LogError($"Error calling Claude API: {exception.Message}");
             return null;
         }
     }

@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net9.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Utils for using various AI models with various approach</Description>
-    <Version>25.12.31.1</Version>
+    <Version>26.1.1.193</Version>
     <PackageReleaseNotes>feat: replacing variable names with self-descriptive ones</PackageReleaseNotes>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
@@ -21,10 +21,8 @@
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);CA1822;ASYNC</DefineConstants>
-    <NoWarn>CA1822;CS1573;CS1572;CS1570;CA1866;CA1865;CA1867;CS1998;CA1847;IDE0066</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>$(DefineConstants);CA1822;ASYNC</DefineConstants>
-    <NoWarn>CA1822;CS1573;CS1572;CS1570;CA1866;CA1865;CA1867;CS1998;CA1847;IDE0066</NoWarn>
   </PropertyGroup>
 </Project>

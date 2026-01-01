@@ -15,6 +15,14 @@ public class GeminiApiService
     private readonly bool _enableDetailedLogging;
     private GoogleAI? _geminiClient;
 
+    /// <summary>
+    /// Initializes a new instance of the GeminiApiService class
+    /// </summary>
+    /// <param name="logger">Logger instance for logging operations</param>
+    /// <param name="apiKey">Google API key for authentication</param>
+    /// <param name="enableBasicLogging">Enable basic logging</param>
+    /// <param name="enableVerboseLogging">Enable verbose logging for debugging</param>
+    /// <param name="enableDetailedLogging">Enable detailed logging for API calls</param>
     public GeminiApiService(
         ILogger logger,
         string apiKey,
@@ -85,12 +93,12 @@ public class GeminiApiService
             {
                 response = await geminiModel.GenerateContent(prompt, config);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                _logger.LogError($"Gemini API call failed: {ex.Message}");
+                _logger.LogError($"Gemini API call failed: {exception.Message}");
 
                 // Check if it's a quota exceeded error
-                if (ex.Message.Contains("TooManyRequests") || ex.Message.Contains("quota"))
+                if (exception.Message.Contains("TooManyRequests") || exception.Message.Contains("quota"))
                 {
                     _logger.LogWarning("Gemini API quota exceeded");
                 }
@@ -152,9 +160,9 @@ public class GeminiApiService
 
             return result.Trim();
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            _logger.LogError($"Error calling Gemini API: {ex.Message}");
+            _logger.LogError($"Error calling Gemini API: {exception.Message}");
             return null;
         }
     }

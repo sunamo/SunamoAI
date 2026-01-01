@@ -11,6 +11,12 @@ public class ClaudeCliService
     private readonly bool _enableVerboseLogging;
     private readonly bool _enableDetailedLogging;
 
+    /// <summary>
+    /// Initializes a new instance of the ClaudeCliService class
+    /// </summary>
+    /// <param name="logger">Logger instance for logging operations</param>
+    /// <param name="enableVerboseLogging">Enable verbose logging for debugging</param>
+    /// <param name="enableDetailedLogging">Enable detailed logging for CLI calls</param>
     public ClaudeCliService(
         ILogger logger,
         bool enableVerboseLogging = false,
@@ -125,9 +131,9 @@ public class ClaudeCliService
 
             return result;
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            _logger.LogError($"Error calling Claude CLI: {ex.Message}");
+            _logger.LogError($"Error calling Claude CLI: {exception.Message}");
             return null;
         }
     }
