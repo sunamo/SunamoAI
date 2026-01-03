@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Utils for using various AI models with various approach</Description>
-    <Version>26.1.1.193</Version>
-    <PackageReleaseNotes>feat: replacing variable names with self-descriptive ones</PackageReleaseNotes>
+    <Version>26.1.3.1</Version>
+    <PackageReleaseNotes>feat: Improved code quality</PackageReleaseNotes>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
     <PackageProjectUrl>https://sunamo.cz/</PackageProjectUrl>
