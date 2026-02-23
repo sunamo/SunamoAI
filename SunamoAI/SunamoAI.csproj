@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Utils for using various AI models with various approach</Description>
-    <Version>26.2.7.3</Version>
-    <PackageReleaseNotes>feat: Enable debug symbols</PackageReleaseNotes>
+    <Version>26.2.23.4</Version>
+    <PackageReleaseNotes>feat: fixing variables names</PackageReleaseNotes>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
     <PackageProjectUrl>https://sunamo.cz/</PackageProjectUrl>
