@@ -21,7 +21,7 @@ SunamoAI provides a clean, consistent interface for interacting with multiple AI
 Service for calling Claude via Anthropic's HTTP API.
 
 ```csharp
-var service = new ClaudeApiService(logger, apiKey, enableVerboseLogging: true);
+var service = new ClaudeApiService(logger, apiKey, isVerboseLoggingEnabled: true);
 var response = await service.CallClaudeApi(
     prompt: "Explain quantum computing",
     model: "claude-sonnet-4-20250514",
@@ -37,7 +37,7 @@ var response = await service.CallClaudeApi(
 Service for calling Claude via command-line interface (claude.cmd).
 
 ```csharp
-var service = new ClaudeCliService(logger, enableVerboseLogging: true);
+var service = new ClaudeCliService(logger, isVerboseLoggingEnabled: true);
 var response = await service.CallClaudeCli(prompt: "Write a haiku about coding");
 ```
 
@@ -53,7 +53,7 @@ var response = await service.CallClaudeCli(prompt: "Write a haiku about coding")
 Service for calling Google's Gemini AI API.
 
 ```csharp
-var service = new GeminiApiService(logger, apiKey, enableBasicLogging: true);
+var service = new GeminiApiService(logger, apiKey, isBasicLoggingEnabled: true);
 var response = await service.CallGeminiApi(
     prompt: "What is the capital of France?",
     model: "gemini-2.5-flash",
@@ -91,7 +91,7 @@ var claudeApi = new ClaudeApiService(logger, "your-api-key");
 var claudeResponse = await claudeApi.CallClaudeApi("Explain AI in simple terms");
 
 // Use Claude CLI
-var claudeCli = new ClaudeCliService(logger, enableVerboseLogging: true);
+var claudeCli = new ClaudeCliService(logger, isVerboseLoggingEnabled: true);
 var cliResponse = await claudeCli.CallClaudeCli("Write a short poem");
 
 // Use Gemini

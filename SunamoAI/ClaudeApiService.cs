@@ -64,8 +64,8 @@ public class ClaudeApiService
                 messages = new[] { new { role = "user", content = prompt } }
             };
 
-            var json = System.Text.Json.JsonSerializer.Serialize(requestBody);
-            var httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var requestJson = System.Text.Json.JsonSerializer.Serialize(requestBody);
+            var httpContent = new StringContent(requestJson, System.Text.Encoding.UTF8, "application/json");
 
             if (isDetailedLoggingEnabled)
             {
