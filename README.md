@@ -73,9 +73,9 @@ dotnet add package SunamoAI
 
 ## Dependencies
 
-- **Mscc.GenerativeAI** (v2.2.0) - Gemini API client
+- **Mscc.GenerativeAI** (v2.8.0) - Gemini API client
 - **Microsoft.Extensions.Logging.Abstractions** - Logging infrastructure
-- **.NET 9.0** target framework
+- **.NET 10.0 / .NET 9.0 / .NET 8.0** target frameworks
 
 ## Usage Example
 
@@ -133,7 +133,7 @@ All services return `null` on failure and log errors appropriately. The ClaudeCl
 
 - **Package Name**: SunamoAI
 - **Category**: Platform-Independent NuGet Package
-- **Target Framework**: .NET 9.0
+- **Target Frameworks**: .NET 10.0, .NET 9.0, .NET 8.0
 
 ## Related Packages
 

@@ -4,55 +4,58 @@ using Microsoft.Extensions.Logging;
 using Mscc.GenerativeAI;
 
 /// <summary>
-/// Generic service for calling Google Gemini API
+/// Service for calling Google Gemini API with configurable logging levels.
 /// </summary>
 public class GeminiApiService
 {
-    private readonly ILogger _logger;
-    private readonly string _apiKey;
-    private readonly bool _enableBasicLogging;
-    private readonly bool _enableVerboseLogging;
-    private readonly bool _enableDetailedLogging;
-    private GoogleAI? _geminiClient;
+    private readonly ILogger logger;
+    private readonly string apiKey;
+    private readonly bool isBasicLoggingEnabled;
+    private readonly bool isVerboseLoggingEnabled;
+    private readonly bool isDetailedLoggingEnabled;
+    private GoogleAI? geminiClient;
 
     /// <summary>
-    /// Initializes a new instance of the GeminiApiService class
+    /// Initializes a new instance of the <see cref="GeminiApiService"/> class.
     /// </summary>
-    /// <param name="logger">Logger instance for logging operations</param>
-    /// <param name="apiKey">Google API key for authentication</param>
-    /// <param name="enableBasicLogging">Enable basic logging</param>
-    /// <param name="enableVerboseLogging">Enable verbose logging for debugging</param>
-    /// <param name="enableDetailedLogging">Enable detailed logging for API calls</param>
+    /// <param name="logger">Logger instance for logging operations.</param>
+    /// <param name="apiKey">Google API key for authentication.</param>
+    /// <param name="isBasicLoggingEnabled">Whether basic logging is enabled.</param>
+    /// <param name="isVerboseLoggingEnabled">Whether verbose logging is enabled for debugging.</param>
+    /// <param name="isDetailedLoggingEnabled">Whether detailed logging is enabled for API calls.</param>
     public GeminiApiService(
         ILogger logger,
         string apiKey,
-        bool enableBasicLogging = false,
-        bool enableVerboseLogging = false,
-        bool enableDetailedLogging = false)
+        bool isBasicLoggingEnabled = false,
+        bool isVerboseLoggingEnabled = false,
+        bool isDetailedLoggingEnabled = false)
     {
-        _logger = logger;
-        _apiKey = apiKey;
-        _enableBasicLogging = enableBasicLogging;
-        _enableVerboseLogging = enableVerboseLogging;
-        _enableDetailedLogging = enableDetailedLogging;
+        this.logger = logger;
+        this.apiKey = apiKey;
+        this.isBasicLoggingEnabled = isBasicLoggingEnabled;
+        this.isVerboseLoggingEnabled = isVerboseLoggingEnabled;
+        this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
+    /// <summary>
+    /// Initializes the Gemini client if not already initialized and the API key is valid.
+    /// </summary>
     private void InitializeClient()
     {
-        if (_geminiClient == null && _apiKey != "PUT_YOUR_GEMINI_API_KEY_HERE")
+        if (geminiClient == null && apiKey != "PUT_YOUR_GEMINI_API_KEY_HERE")
         {
-            _geminiClient = new GoogleAI(_apiKey);
+            geminiClient = new GoogleAI(apiKey);
         }
     }
 
     /// <summary>
-    /// Calls Gemini API with a prompt and returns the response
+    /// Calls Gemini API with a prompt and returns the response.
     /// </summary>
-    /// <param name="prompt">The prompt to send to Gemini</param>
-    /// <param name="model">Gemini model to use (default: gemini-2.5-flash)</param>
-    /// <param name="temperature">Temperature for response generation (default: 0.0)</param>
-    /// <param name="maxOutputTokens">Maximum tokens in response (default: 8192)</param>
-    /// <returns>Gemini's response text, or null if failed</returns>
+    /// <param name="prompt">The prompt to send to Gemini.</param>
+    /// <param name="model">Gemini model to use (default: gemini-2.5-flash).</param>
+    /// <param name="temperature">Temperature for response generation (default: 0.0).</param>
+    /// <param name="maxOutputTokens">Maximum tokens in response (default: 8192).</param>
+    /// <returns>Gemini's response text, or null if the call failed.</returns>
     public async Task<string?> CallGeminiApi(
         string prompt,
         string model = "gemini-2.5-flash",
@@ -61,23 +64,23 @@ public class GeminiApiService
     {
         InitializeClient();
 
-        if (_geminiClient == null)
+        if (geminiClient == null)
         {
-            _logger.LogWarning("Gemini client not initialized - API key not set");
+            logger.LogWarning("Gemini client not initialized - API key not set");
             return null;
         }
 
         try
         {
-            var geminiModel = _geminiClient.GenerativeModel(model: model);
+            var geminiModel = geminiClient.GenerativeModel(model: model);
 
-            if (_enableBasicLogging)
+            if (isBasicLoggingEnabled)
             {
-                _logger.LogInformation($"Calling Gemini with prompt length: {prompt.Length}");
+                logger.LogInformation($"Calling Gemini with prompt length: {prompt.Length}");
             }
-            if (_enableVerboseLogging)
+            if (isVerboseLoggingEnabled)
             {
-                _logger.LogInformation($"Sending prompt to Gemini API (model: {model})");
+                logger.LogInformation($"Sending prompt to Gemini API (model: {model})");
             }
 
             var request = new GenerateContentRequest(prompt)
@@ -98,28 +101,27 @@ public class GeminiApiService
             }
             catch (Exception exception)
             {
-                _logger.LogError($"Gemini API call failed: {exception.Message}");
+                logger.LogError($"Gemini API call failed: {exception.Message}");
 
-                // Check if it's a quota exceeded error
                 if (exception.Message.Contains("TooManyRequests") || exception.Message.Contains("quota"))
                 {
-                    _logger.LogWarning("Gemini API quota exceeded");
+                    logger.LogWarning("Gemini API quota exceeded");
                 }
                 return null;
             }
 
-            if (_enableDetailedLogging)
+            if (isDetailedLoggingEnabled)
             {
-                _logger.LogInformation($"Gemini response: Text={response?.Text?.Length ?? 0} chars");
+                logger.LogInformation($"Gemini response: Text={response?.Text?.Length ?? 0} chars");
             }
 
             var result = response?.Text;
 
             if (string.IsNullOrEmpty(result))
             {
-                if (_enableBasicLogging)
+                if (isBasicLoggingEnabled)
                 {
-                    _logger.LogWarning("Gemini returned empty response");
+                    logger.LogWarning("Gemini returned empty response");
                 }
                 return null;
             }
@@ -128,7 +130,7 @@ public class GeminiApiService
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Error calling Gemini API: {exception.Message}");
+            logger.LogError($"Error calling Gemini API: {exception.Message}");
             return null;
         }
     }
