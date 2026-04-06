@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Utils for using various AI models with various approach</Description>
-    <Version>26.4.6.6</Version>
+    <Version>26.4.6.7</Version>
     <PackageReleaseNotes>feat: Improved code quality</PackageReleaseNotes>
     <Authors>www.sunamo.cz</Authors>
     <Copyright>www.sunamo.cz</Copyright>
