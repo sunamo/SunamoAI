@@ -3,9 +3,6 @@ namespace SunamoAI;
 using Microsoft.Extensions.Logging;
 using Mscc.GenerativeAI;
 
-/// <summary>
-/// Service for calling Google Gemini API with configurable logging levels.
-/// </summary>
 public class GeminiApiService
 {
     private readonly ILogger logger;
@@ -15,14 +12,6 @@ public class GeminiApiService
     private readonly bool isDetailedLoggingEnabled;
     private GoogleAI? geminiClient;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="GeminiApiService"/> class.
-    /// </summary>
-    /// <param name="logger">Logger instance for logging operations.</param>
-    /// <param name="apiKey">Google API key for authentication.</param>
-    /// <param name="isBasicLoggingEnabled">Whether basic logging is enabled.</param>
-    /// <param name="isVerboseLoggingEnabled">Whether verbose logging is enabled for debugging.</param>
-    /// <param name="isDetailedLoggingEnabled">Whether detailed logging is enabled for API calls.</param>
     public GeminiApiService(
         ILogger logger,
         string apiKey,
@@ -37,9 +26,6 @@ public class GeminiApiService
         this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
-    /// <summary>
-    /// Initializes the Gemini client if not already initialized and the API key is valid.
-    /// </summary>
     private void InitializeClient()
     {
         if (geminiClient == null && apiKey != "PUT_YOUR_GEMINI_API_KEY_HERE")
@@ -48,14 +34,6 @@ public class GeminiApiService
         }
     }
 
-    /// <summary>
-    /// Calls Gemini API with a prompt and returns the response.
-    /// </summary>
-    /// <param name="prompt">The prompt to send to Gemini.</param>
-    /// <param name="model">Gemini model to use (default: gemini-2.5-flash).</param>
-    /// <param name="temperature">Temperature for response generation (default: 0.0).</param>
-    /// <param name="maxOutputTokens">Maximum tokens in response (default: 8192).</param>
-    /// <returns>Gemini's response text, or null if the call failed.</returns>
     public async Task<string?> CallGeminiApi(
         string prompt,
         string model = "gemini-2.5-flash",

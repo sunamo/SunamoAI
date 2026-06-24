@@ -2,9 +2,6 @@ namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;
 
-/// <summary>
-/// Service for calling Claude API (Anthropic HTTP API) with configurable logging levels.
-/// </summary>
 public class ClaudeApiService
 {
     private readonly ILogger logger;
@@ -12,13 +9,6 @@ public class ClaudeApiService
     private readonly bool isVerboseLoggingEnabled;
     private readonly bool isDetailedLoggingEnabled;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ClaudeApiService"/> class.
-    /// </summary>
-    /// <param name="logger">Logger instance for logging operations.</param>
-    /// <param name="apiKey">Anthropic API key for authentication.</param>
-    /// <param name="isVerboseLoggingEnabled">Whether verbose logging is enabled for debugging.</param>
-    /// <param name="isDetailedLoggingEnabled">Whether detailed logging is enabled for API calls.</param>
     public ClaudeApiService(
         ILogger logger,
         string apiKey,
@@ -31,14 +21,6 @@ public class ClaudeApiService
         this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
-    /// <summary>
-    /// Calls Claude API with a prompt and returns the response.
-    /// </summary>
-    /// <param name="prompt">The prompt to send to Claude.</param>
-    /// <param name="model">Claude model to use (default: claude-sonnet-4-20250514).</param>
-    /// <param name="maxTokens">Maximum tokens in response (default: 1024).</param>
-    /// <param name="temperature">Temperature for response generation (default: 0.0).</param>
-    /// <returns>Claude's response text, or null if the call failed.</returns>
     public async Task<string?> CallClaudeApi(
         string prompt,
         string model = "claude-sonnet-4-20250514",

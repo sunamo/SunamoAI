@@ -2,21 +2,12 @@ namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;
 
-/// <summary>
-/// Service for calling Claude CLI (claude.cmd) with retry logic and rate limit handling.
-/// </summary>
 public class ClaudeCliService
 {
     private readonly ILogger logger;
     private readonly bool isVerboseLoggingEnabled;
     private readonly bool isDetailedLoggingEnabled;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ClaudeCliService"/> class.
-    /// </summary>
-    /// <param name="logger">Logger instance for logging operations.</param>
-    /// <param name="isVerboseLoggingEnabled">Whether verbose logging is enabled for debugging.</param>
-    /// <param name="isDetailedLoggingEnabled">Whether detailed logging is enabled for CLI calls.</param>
     public ClaudeCliService(
         ILogger logger,
         bool isVerboseLoggingEnabled = false,
@@ -27,13 +18,6 @@ public class ClaudeCliService
         this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
-    /// <summary>
-    /// Calls Claude CLI with a prompt and returns the response.
-    /// Includes automatic retry logic for rate limit errors (up to 3 retries with 65-second waits).
-    /// </summary>
-    /// <param name="prompt">The prompt to send to Claude.</param>
-    /// <param name="retryCount">Internal retry counter (starts at 0).</param>
-    /// <returns>Claude's response text, or null if the call failed.</returns>
     public async Task<string?> CallClaudeCli(string prompt, int retryCount = 0)
     {
         try
