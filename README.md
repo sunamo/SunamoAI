@@ -1,5 +1,10 @@
 # SunamoAI
 
+## Short description
+
+Knihovna pro volání AI modelů Claude a Gemini přes jednotné rozhraní. Obsahuje opakování pokusů a ošetření limitů počtu požadavků. Součástí je testovací projekt a spustitelný Runner.
+
+
 Generic AI services library for calling various AI models (Claude and Gemini) with built-in retry logic and rate limit handling.
 
 ## Overview
