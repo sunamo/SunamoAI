@@ -29,7 +29,7 @@
   <ItemGroup>
     <PackageReference Include="Mscc.GenerativeAI" Version="2.8.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" Pack="True" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp" Version="1.15.0" PrivateAssets="all" />
