@@ -6,9 +6,9 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 
-// Genericky HTTP klient na sunamo.cz Claude proxy (cats.sunamo.cz/Claude/Ask) s bearer auth
-// pres ClaudeProxyAuthService - pouzitelny libovolnou app, ktera ma pristup k tomuto proxy
-// (na rozdil od ClaudeApiService, ktery vola primo api.anthropic.com s api klicem).
+// Generic HTTP client for the sunamo.cz Claude proxy (cats.sunamo.cz/Claude/Ask) with bearer auth
+// via ClaudeProxyAuthService - usable by any app that has access to this proxy
+// (unlike ClaudeApiService, which calls api.anthropic.com directly with an API key).
 public class ClaudeProxyService(HttpClient httpClient, ILogger logger, ClaudeProxyAuthService? authService = null)
 {
     public static string BaseUrl = "https://cats.sunamo.cz";
@@ -26,7 +26,7 @@ public class ClaudeProxyService(HttpClient httpClient, ILogger logger, ClaudePro
             }
 
             response.EnsureSuccessStatusCode();
-            // Server muze vratit obycejny string (hello) nebo JSON-encoded string ("hello")
+            // The server may return a plain string (hello) or a JSON-encoded string ("hello")
             return body.StartsWith("\"") ? JsonSerializer.Deserialize<string>(body) : body;
         }
         catch (Exception ex)

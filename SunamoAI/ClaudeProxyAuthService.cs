@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-// Login/bearer auth pro ClaudeProxyService - drzi token do vyprseni, thread-safe refresh.
+// Login/bearer auth for ClaudeProxyService - holds the token until expiry, thread-safe refresh.
 public class ClaudeProxyAuthService(HttpClient httpClient, string baseUrl, string email, string password)
 {
     private string? _token;
