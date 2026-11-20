@@ -2,6 +2,9 @@ namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+/// Represents the claude api service type.
+/// </summary>
 public class ClaudeApiService
 {
     private readonly ILogger logger;
@@ -9,6 +12,13 @@ public class ClaudeApiService
     private readonly bool isVerboseLoggingEnabled;
     private readonly bool isDetailedLoggingEnabled;
 
+    /// <summary>
+    /// Initializes a new instance of the claude api service class.
+    /// </summary>
+    /// <param name="logger">The logger.</param>
+    /// <param name="apiKey">The api key.</param>
+    /// <param name="isVerboseLoggingEnabled">The is verbose logging enabled.</param>
+    /// <param name="isDetailedLoggingEnabled">The is detailed logging enabled.</param>
     public ClaudeApiService(
         ILogger logger,
         string apiKey,
@@ -21,6 +31,14 @@ public class ClaudeApiService
         this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
+    /// <summary>
+    /// Call claude api.
+    /// </summary>
+    /// <param name="prompt">The prompt.</param>
+    /// <param name="model">The model.</param>
+    /// <param name="maxTokens">The max tokens.</param>
+    /// <param name="temperature">The temperature.</param>
+    /// <returns>The call claude api result.</returns>
     public async Task<string?> CallClaudeApi(
         string prompt,
         string model = "claude-sonnet-4-20250514",

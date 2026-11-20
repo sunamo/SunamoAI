@@ -2,12 +2,21 @@ namespace SunamoAI;
 
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+/// Represents the claude cli service type.
+/// </summary>
 public class ClaudeCliService
 {
     private readonly ILogger logger;
     private readonly bool isVerboseLoggingEnabled;
     private readonly bool isDetailedLoggingEnabled;
 
+    /// <summary>
+    /// Initializes a new instance of the claude cli service class.
+    /// </summary>
+    /// <param name="logger">The logger.</param>
+    /// <param name="isVerboseLoggingEnabled">The is verbose logging enabled.</param>
+    /// <param name="isDetailedLoggingEnabled">The is detailed logging enabled.</param>
     public ClaudeCliService(
         ILogger logger,
         bool isVerboseLoggingEnabled = false,
@@ -18,6 +27,12 @@ public class ClaudeCliService
         this.isDetailedLoggingEnabled = isDetailedLoggingEnabled;
     }
 
+    /// <summary>
+    /// Call claude cli.
+    /// </summary>
+    /// <param name="prompt">The prompt.</param>
+    /// <param name="retryCount">The retry count.</param>
+    /// <returns>The call claude cli result.</returns>
     public async Task<string?> CallClaudeCli(string prompt, int retryCount = 0)
     {
         try

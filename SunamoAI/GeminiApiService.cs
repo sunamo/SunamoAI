@@ -3,6 +3,9 @@ namespace SunamoAI;
 using Microsoft.Extensions.Logging;
 using Mscc.GenerativeAI;
 
+/// <summary>
+/// Represents the gemini api service type.
+/// </summary>
 public class GeminiApiService
 {
     private readonly ILogger logger;
@@ -12,6 +15,14 @@ public class GeminiApiService
     private readonly bool isDetailedLoggingEnabled;
     private GoogleAI? geminiClient;
 
+    /// <summary>
+    /// Initializes a new instance of the gemini api service class.
+    /// </summary>
+    /// <param name="logger">The logger.</param>
+    /// <param name="apiKey">The api key.</param>
+    /// <param name="isBasicLoggingEnabled">The is basic logging enabled.</param>
+    /// <param name="isVerboseLoggingEnabled">The is verbose logging enabled.</param>
+    /// <param name="isDetailedLoggingEnabled">The is detailed logging enabled.</param>
     public GeminiApiService(
         ILogger logger,
         string apiKey,
@@ -34,6 +45,14 @@ public class GeminiApiService
         }
     }
 
+    /// <summary>
+    /// Call gemini api.
+    /// </summary>
+    /// <param name="prompt">The prompt.</param>
+    /// <param name="model">The model.</param>
+    /// <param name="temperature">The temperature.</param>
+    /// <param name="maxOutputTokens">The max output tokens.</param>
+    /// <returns>The call gemini api result.</returns>
     public async Task<string?> CallGeminiApi(
         string prompt,
         string model = "gemini-2.5-flash",

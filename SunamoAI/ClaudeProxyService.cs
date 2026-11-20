@@ -9,10 +9,25 @@ using Microsoft.Extensions.Logging;
 // Generic HTTP client for the sunamo.cz Claude proxy (cats.sunamo.cz/Claude/Ask) with bearer auth
 // via ClaudeProxyAuthService - usable by any app that has access to this proxy
 // (unlike ClaudeApiService, which calls api.anthropic.com directly with an API key).
+/// <summary>
+/// Claude proxy service.
+/// </summary>
+/// <param name="httpClient">The http client.</param>
+/// <param name="logger">The logger.</param>
+/// <param name="authService">The auth service.</param>
+/// <returns>The claude proxy service result.</returns>
 public class ClaudeProxyService(HttpClient httpClient, ILogger logger, ClaudeProxyAuthService? authService = null)
 {
+    /// <summary>
+    /// The base url.
+    /// </summary>
     public static string BaseUrl = "https://cats.sunamo.cz";
 
+    /// <summary>
+    /// Ask.
+    /// </summary>
+    /// <param name="prompt">The prompt.</param>
+    /// <returns>The ask result.</returns>
     public async Task<string?> Ask(string prompt)
     {
         try
