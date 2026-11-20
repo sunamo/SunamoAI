@@ -1,4 +1,3 @@
-// variables names: ok
 namespace SunamoAI.Tests;
 
 using Microsoft.Extensions.Logging;
